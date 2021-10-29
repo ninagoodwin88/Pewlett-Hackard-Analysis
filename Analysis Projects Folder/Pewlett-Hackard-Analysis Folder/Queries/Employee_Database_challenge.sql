@@ -51,6 +51,7 @@ ORDER BY e.emp_no;
 
 SELECT * FROM mentorship_eligibilty
 
+-- Created table of retirees to count how many retiring
 SELECT DISTINCT ON (re.emp_no) re.emp_no, re.first_name, re.last_name, re.title, re.from_date, 
 					re.to_date, em.birth_date
 INTO silver_tsunami					
@@ -62,13 +63,33 @@ AND (em.birth_date BETWEEN '1952-01-01' AND '1955-12-31')
 AND (re.from_date <= '2001-01-01')
 ORDER BY re.emp_no;
 
+SELECT * FROM silver_tsunami
+
 SELECT COUNT(un.title), un.title
+INTO silver_tsunami_count
 FROM silver_tsunami AS un
 GROUP BY un.title
 ORDER BY un.count DESC;
+
+
+SELECT e.emp_no
+FROM employees AS e
+WHERE (e.birth_date >='01-01-1956')
+
+SELECT * FROM mentorship_eligibilty
 
 SELECT COUNT(un.title), un.title
 FROM mentorship_eligibilty AS un
 GROUP BY un.title
 ORDER BY un.count DESC;
+
+SELECT st.title, st.first_name, st.last_name,title, st.birth_date, st.from_date, st.to_date
+FROM silver_tsunami AS st
+WHERE st.title = 'Manager'
+
+-- sum of employees that are retiring
+SELECT * FROM silver_tsunami_count
+SELECT SUM (count)
+FROM silver_tsunami_count
+
 
