@@ -67,3 +67,8 @@ FROM silver_tsunami AS un
 GROUP BY un.title
 ORDER BY un.count DESC;
 
+SELECT COUNT(un.title), un.title
+FROM mentorship_eligibilty AS un
+GROUP BY un.title
+ORDER BY un.count DESC;
+
